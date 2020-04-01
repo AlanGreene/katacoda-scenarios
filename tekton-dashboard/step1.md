@@ -22,7 +22,7 @@ Verify the pods are running:
 
 For reference, the installation instructions are [here](https://github.com/tektoncd/dashboard#install-dashboard). To install the Tekton Dashboard, run the following
 command:
-`kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/previous/v0.5.3/tekton-dashboard-release.yaml`{{execute}}
+`kubectl apply --filename https://github.com/tektoncd/dashboard/releases/download/v0.6.0/tekton-dashboard-release.yaml`{{execute}}
 
 <!-- `kubectl apply --filename https://storage.googleapis.com/tekton-releases/dashboard/latest/release.yaml`{{execute}} -->
 
@@ -31,19 +31,12 @@ Verify the Dashboard pod is running:
 
 ## Expose the Tekton Dashboard
 
-### Install Ingress controller
-
-Install the nginx ingress controller into the `ingress-nginx` namespace:
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
-```{{execute}}
+### Verify the Ingress controller
 
 Verify the ingress controller pod is running:
 
 ```bash
-kubectl get pods -n ingress-nginx
+kubectl get pods -n kube-system
 ```{{execute}}
 
 ### Create Ingress for the Tekton Dashboard
@@ -78,4 +71,4 @@ https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/.
 
 It might take a minute for the ingress and Katacoda to get set up.
 
-![Dashboard homepage screenshot](https://raw.githubusercontent.com/ncskier/katacoda/master/tekton-dashboard/images/dashboard-homepage.png)
+![Dashboard homepage screenshot](https://raw.githubusercontent.com/AlanGreene/katacoda-scenarios/master/tekton-dashboard/images/dashboard-homepage.png)
