@@ -46,7 +46,7 @@
     "uilayout": "terminal-iframe"
   },
   "backend": {
-    "imageid": "kubernetes",
+    "imageid": "minikube",
     "port": "80"
   }
 }

@@ -4,9 +4,11 @@ sleep 1
 # Start Kubernetes
 #launch.sh
 
+minikube start && minikube addons enable ingress
+
 #apt update
 
-#apt install -y kubeadm=1.15.11-00
+#apt install -y kubeadm=1.15.11-00 kubectl=1.15.11-00 kubelet=1.15.11-00
 
 # kubeadm reset --force
 
