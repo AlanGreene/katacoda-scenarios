@@ -46,7 +46,7 @@
     "uilayout": "terminal-iframe"
   },
   "backend": {
-    "imageid": "kubernetes:1.17",
+    "imageid": "kubernetes-cluster:1.16",
     "port": "80"
   }
 }
