@@ -2,7 +2,11 @@
 sleep 1
 
 # Start Kubernetes
-launch.sh
+#launch.sh
+
+apt update
+apt install -y kubeadm=1.15.11-00
+kubeadm init --kubernetes-version $(kubeadm version -o short)
 
 # # Install Tekton Pipelines
 # kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
