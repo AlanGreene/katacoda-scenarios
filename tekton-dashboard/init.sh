@@ -5,7 +5,11 @@ sleep 1
 #launch.sh
 
 apt update
+
 apt install -y kubeadm=1.15.11-00
+
+# kubeadm reset --force
+
 kubeadm init --kubernetes-version $(kubeadm version -o short)
 
 # # Install Tekton Pipelines
