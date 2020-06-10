@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Start Kubernetes
+echo "Starting cluster"
 minikube start
 minikube addons enable ingress
+echo "done" >> /opt/.clusterstarted
 
 echo "Installing Tekton Pipelines"
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.0/release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.1/release.yaml
 echo "done" >> /opt/.pipelinesinstalled
 
 echo "Installing Tekton Dashboard"
@@ -35,8 +37,5 @@ echo "done" >> /opt/.ingressconfigured
 
 # Verify the Ingress was created
 kubectl get ingress -n tekton-pipelines
-
-# Open the `Dashboard` tab in your Katacoda window, or click on the following link:
-# https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/
 
 echo "done" >> /opt/.backgroundfinished

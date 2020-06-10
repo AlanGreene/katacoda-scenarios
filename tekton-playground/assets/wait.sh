@@ -22,7 +22,8 @@ waitForCompletion() {
 
 showProgress()
 {
-  echo "Starting"
+  echo -n "Starting minikube cluster"
+  waitForCompletion /opt/.clusterstarted
   echo -n "Installing Tekton Pipelines"
   waitForCompletion /opt/.pipelinesinstalled
   echo -n "Installing Tekton Dashboard"
@@ -34,6 +35,7 @@ showProgress()
   echo -n "Completing"
   waitForCompletion /opt/.backgroundfinished
   echo "Ready"
+  echo ""
 }
 
 showProgress

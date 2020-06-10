@@ -1,14 +1,16 @@
-#### Launch Cluster
+#### Try it out
 
-`launch.sh`{{execute}}
+This is a sandbox environment with [Tekton Pipelines v0.13.1](https://github.com/tektoncd/pipeline/releases/tag/v0.13.1) and [Tekton Dashboard v0.7.0](https://github.com/tektoncd/dashboard/releases/tag/v0.7.0).
 
-This will create a two node Kubernetes cluster using WeaveNet for networking.
+Check out some of the [examples](https://github.com/tektoncd/pipeline/tree/master/examples) from the Tekton Pipeline repo.
 
-#### Health Check
+For example:
+`kubectl apply -f https://raw.githubusercontent.com/tektoncd/pipeline/master/examples/v1beta1/pipelineruns/output-pipelinerun.yaml`{{execute}}
 
-`
-kubectl cluster-info
-`{{execute}}
+You can track the progress of your `TaskRuns` or `PipelineRuns` using:
 
+`kubectl get pipelineruns`{{execute}}
 
-Interested in writing your own Tekton scenarios and demos? Visit [www.katacoda.com/teach](http://www.katacoda.com/teach)
+`kubectl get taskruns`{{execute}}
+
+or check out the Tekton Dashboard at https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/
