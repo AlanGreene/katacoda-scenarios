@@ -6,13 +6,13 @@
   "details": {
     "steps": [
       {
-        "code": "set-env.sh",
+        "courseData": "background.sh",
+        "code": "foreground.sh",
         "text": "step1.md"
       }
     ],
     "intro": {
       "text": "intro.md",
-      "courseData": "courseBase.sh",
       "credits": ""
     },
     "finish": {
@@ -23,6 +23,8 @@
     "showdashboard": true,
     "uilayout": "terminal-iframe",
     "uimessage1": "\u001b[32mYour interactive Bash terminal.\u001b[m\r\n",
+    "hideintro": true,
+    "hidefinish": true,
     "icon": "fa-kubernetes",
     "dashboards": [
       {

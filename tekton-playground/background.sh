@@ -33,3 +33,5 @@ kubectl get ingress -n tekton-pipelines
 
 # Open the `Dashboard` tab in your Katacoda window, or click on the following link:
 # https://[[HOST_SUBDOMAIN]]-80-[[KATACODA_HOST]].environments.katacoda.com/
+
+echo "done" >> /opt/.backgroundfinished
