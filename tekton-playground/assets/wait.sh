@@ -32,8 +32,10 @@ showProgress()
   waitForCompletion /opt/.podsready
   echo -n "Configuring ingress"
   waitForCompletion /opt/.ingressconfigured
-  echo -n "Completing"
-  waitForCompletion /opt/.backgroundfinished
+  echo -n "Waiting for external IP"
+  waitForCompletion /opt/.externalipready
+  # echo -n "Completing"
+  # waitForCompletion /opt/.backgroundfinished
   echo "Ready"
   echo ""
 }

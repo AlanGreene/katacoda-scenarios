@@ -32,10 +32,14 @@ spec:
     serviceName: tekton-dashboard
     servicePort: 9097
 EOF
-
 echo "done" >> /opt/.ingressconfigured
 
-# Verify the Ingress was created
-kubectl get ingress -n tekton-pipelines
+external_ip=""
+while [ -z $external_ip ]; do
+  echo "Waiting for external IP..."
+  external_ip=$(kubectl get -n tekton-pipelines ingress tekton-dashboard --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")
+  [ -z "$external_ip" ] && sleep 10
+done
+echo "done" >> /opt/.externalipready
 
 echo "done" >> /opt/.backgroundfinished
