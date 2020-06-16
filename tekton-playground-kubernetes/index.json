@@ -1,0 +1,40 @@
+{
+  "pathwayTitle": "Tekton",
+  "title": "Tekton Playground (2 nodes)",
+  "description": "Use Tekton in a hosted sandboxed interactive environment",
+  "details": {
+    "steps": [
+      {
+        "background": "background.sh",
+        "foreground": "foreground.sh",
+        "text": "step1.md"
+      }
+    ],
+    "assets": {
+      "host01": [
+        {
+          "file": "wait.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "showdashboard": true,
+    "uilayout": "terminal-iframe",
+    "uimessage1": "\u001b[32mYour interactive Bash terminal.\u001b[m\r\n",
+    "hideintro": true,
+    "hidefinish": true,
+    "dashboards": [
+      {
+        "name": "Dashboard",
+        "port": 9097
+      }
+    ]
+  },
+  "backend": {
+    "imageid": "kubernetes-cluster-running:1.18",
+    "port": "80"
+  }
+}
