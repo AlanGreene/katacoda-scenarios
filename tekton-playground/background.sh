@@ -7,7 +7,7 @@ minikube addons enable ingress
 echo "done" >> /opt/.clusterstarted
 
 echo "Installing Tekton Pipelines"
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.1/release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.2/release.yaml
 echo "done" >> /opt/.pipelinesinstalled
 
 echo "Installing Tekton Dashboard"
