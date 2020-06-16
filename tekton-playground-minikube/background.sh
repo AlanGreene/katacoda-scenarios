@@ -2,14 +2,18 @@
 
 # Start Kubernetes
 echo "Starting cluster"
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
-  && chmod +x minikube
-./minikube start --kubernetes-version v1.18.3
-./minikube addons enable ingress
+# curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+#   && chmod +x minikube
+# ./minikube start --kubernetes-version v1.18.3
+# ./minikube addons enable ingress
+# curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+#   && chmod +x minikube
+minikube start
+minikube addons enable ingress
 echo "done" >> /opt/.clusterstarted
 
 echo "Installing Tekton Pipelines"
-kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.1/release.yaml
+kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.2/release.yaml
 echo "done" >> /opt/.pipelinesinstalled
 
 echo "Installing Tekton Dashboard"
