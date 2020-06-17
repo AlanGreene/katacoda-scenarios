@@ -7,11 +7,34 @@ echo "done" >> /opt/.clusterstarted
 
 echo "Installing Tekton Pipelines"
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.13.2/release.yaml
+
+mkdir /mnt/data
+
+kubectl apply -f - << EOF
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+EOF
+
+kubectl delete configmap/config-artifact-pvc -n tekton-pipelines
+kubectl create configmap config-artifact-pvc --from-literal=storageClassName=manual -n tekton-pipelines
+
 echo "done" >> /opt/.pipelinesinstalled
 
 echo "Installing Tekton Dashboard"
 # kubectl apply --filename https://github.com/tektoncd/dashboard/releases/download/v0.7.0/tekton-dashboard-release.yaml
-cat << EOF | kubectl apply -f -
+kubectl apply -f - << EOF
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -463,6 +486,11 @@ spec:
 EOF
 echo "done" >> /opt/.dashboardinstalled
 
+echo "Installing Tekton CLI"
+curl -LO https://github.com/tektoncd/cli/releases/download/v0.10.0/tkn_0.10.0_Linux_x86_64.tar.gz
+tar xvzf tkn_0.10.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn
+echo "done" >> /opt/.tkninstalled
+
 echo "Waiting for Tekton pods to be ready"
 kubectl wait pod -n tekton-pipelines --all --for=condition=Ready --timeout=90s
 echo "done" >> /opt/.podsready
@@ -479,7 +507,7 @@ echo "Configure ingress"
 #   --timeout=120s
 
 # # kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller
-# cat << EOF | kubectl apply -f -
+# kubectl apply -f - << EOF
 # apiVersion: networking.k8s.io/v1beta1
 # kind: Ingress
 # metadata:

@@ -1,7 +1,8 @@
 {
-  "pathwayTitle": "Tekton",
   "title": "Tekton Playground",
-  "description": "Use Tekton in a hosted sandboxed interactive environment",
+  "description": "Experiment, explore, and learn Tekton",
+  "difficulty": "Beginner",
+  "time": "10 minutes",
   "details": {
     "steps": [
       {
@@ -10,6 +11,12 @@
         "text": "step1.md"
       }
     ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
     "assets": {
       "host01": [
         {
@@ -23,9 +30,9 @@
   "environment": {
     "showdashboard": true,
     "uilayout": "terminal-iframe",
-    "uimessage1": "\u001b[32mYour interactive Bash terminal.\u001b[m\r\n",
-    "hideintro": true,
-    "hidefinish": true,
+    "uimessage1": "\u001b[32mSetting up your Tekton playground...\u001b[m\r\n",
+    "hideintro": false,
+    "hidefinish": false,
     "dashboards": [
       {
         "name": "Dashboard",
