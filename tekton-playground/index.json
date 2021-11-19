@@ -36,12 +36,12 @@
     "dashboards": [
       {
         "name": "Dashboard",
-        "port": 80
+        "port": 9097
       }
     ]
   },
   "backend": {
-    "imageid": "minikube",
+    "imageid": "kubernetes-cluster-running",
     "port": "80"
   }
 }
