@@ -1,0 +1,36 @@
+#!/bin/bash
+
+waitForCompletion() {
+  local -r delay='0.75'
+  local spinstr='\|/-'
+  local temp
+  while true; do
+    sudo grep -i "done" $1 &> /dev/null
+    if [[ "$?" -ne 0 ]]; then
+      temp="${spinstr#?}"
+      printf " [%c]  " "${spinstr}"
+      spinstr=${temp}${spinstr%"${temp}"}
+      sleep "${delay}"
+      printf "\b\b\b\b\b\b"
+    else
+      break
+    fi
+  done
+  printf "    \b\b\b\b"
+  echo ""
+}
+
+showProgress() {
+  echo -n "Installing Tekton Pipelines"
+  waitForCompletion /opt/.pipelinesinstalled
+  echo -n "Installing Tekton Dashboard"
+  waitForCompletion /opt/.dashboardinstalled
+  echo -n "Waiting for pods to be ready"
+  waitForCompletion /opt/.podsready
+  echo -n "Configuring port forward"
+  waitForCompletion /opt/.portforwardconfigured
+  echo "Ready"
+  echo ""
+}
+
+showProgress
